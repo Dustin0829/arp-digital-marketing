@@ -39,7 +39,6 @@ export function HeroSection() {
   useEffect(() => {
     const video = videoRef.current
     if (video) {
-      // Ensure video starts paused
       video.pause()
       setIsPlaying(false)
     }
@@ -74,7 +73,7 @@ export function HeroSection() {
             </Fade>
           </div>
 
-          <Slide direction="left" duration={1500} delay={200}>
+              <Slide direction="right" duration={1500} delay={200}>
             <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-2xl">
             <video
               ref={videoRef}
@@ -88,7 +87,6 @@ export function HeroSection() {
               Your browser does not support the video tag.
             </video>
             
-            {/* Video Controls - Only show when paused */}
             {!isPlaying && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <Button
@@ -105,7 +103,6 @@ export function HeroSection() {
               </div>
             )}
 
-            {/* Mute/Unmute Button */}
             <div className="absolute bottom-4 right-4">
               <Button
                 onClick={(e) => {

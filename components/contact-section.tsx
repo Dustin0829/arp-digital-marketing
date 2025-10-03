@@ -10,23 +10,40 @@ import { useState } from "react"
 import { Fade, Slide } from "react-awesome-reveal"
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  })
+  const [result, setResult] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-  }
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setResult("Sending....")
+    const formData = new FormData(event.currentTarget)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }))
+    formData.append("access_key", "e4cfe46a-5029-4375-a2c5-a521b34b61a0")
+
+    try {
+      console.log("Sending form data to Web3Forms...")
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
+
+      console.log("Response status:", response.status)
+      const data = await response.json()
+      console.log("Response data:", data)
+
+      if (data.success) {
+        setResult("Form Submitted Successfully")
+        // Reset form safely
+        if (event.currentTarget && event.currentTarget.reset) {
+          event.currentTarget.reset()
+        }
+      } else {
+        console.log("Web3Forms Error:", data)
+        setResult(data.message || "Form submission failed. Please try again.")
+      }
+    } catch (error) {
+      console.log("Network/Request Error:", error)
+      setResult("Something went wrong. Please try again.")
+    }
   }
 
   return (
@@ -47,59 +64,6 @@ export function ContactSection() {
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <Slide direction="left" duration={1500} delay={400}>
-            <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="bg-background"
-                />
-              </div>
-              <div>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="bg-background"
-                />
-              </div>
-              <div>
-                <Input
-                  type="tel"
-                  name="phone"
-                  placeholder="Your Phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="bg-background"
-                />
-              </div>
-              <div>
-                <Textarea
-                  name="message"
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="bg-background"
-                />
-              </div>
-              <Button type="submit" size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white">
-                Send Message
-              </Button>
-            </form>
-            </div>
-          </Slide>
-
-          <Slide direction="right" duration={1500} delay={600}>
             <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
@@ -179,6 +143,62 @@ export function ContactSection() {
                 </a>
               </div>
             </div>
+            </div>
+          </Slide>
+
+          <Slide direction="right" duration={1500} delay={600}>
+            <div>
+            <form onSubmit={onSubmit} className="space-y-6">
+              <input type="checkbox" name="botcheck" className="hidden" style={{display: 'none'}} />
+              
+              <div>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                  className="bg-background"
+                />
+              </div>
+              <div>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  required
+                  className="bg-background"
+                />
+              </div>
+              <div>
+                <Input
+                  type="tel"
+                  name="phone"
+                  placeholder="Your Phone"
+                  className="bg-background"
+                />
+              </div>
+              <div>
+                <Textarea
+                  name="message"
+                  placeholder="Your Message"
+                  required
+                  rows={5}
+                  className="bg-background"
+                />
+              </div>
+              <Button type="submit" size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white">
+                Send Message
+              </Button>
+              {result && (
+                <div className={`text-center p-3 rounded-md ${
+                  result === "Form Submitted Successfully" 
+                    ? "bg-green-100 text-green-800 border border-green-200" 
+                    : "bg-red-100 text-red-800 border border-red-200"
+                }`}>
+                  {result}
+                </div>
+              )}
+            </form>
             </div>
           </Slide>
         </div>

@@ -259,7 +259,6 @@ export function TestimonialsSection() {
             ))}
           </div>
 
-          {/* Mobile Navigation Buttons */}
           <div className="flex justify-center gap-4 mt-8 md:hidden">
             <Button
               onClick={prevVideo}
@@ -277,7 +276,6 @@ export function TestimonialsSection() {
             </Button>
           </div>
 
-          {/* Desktop Dots Navigation */}
           <div className="hidden md:flex justify-center gap-2 mt-8">
             {clientVideos.map((_, index) => (
               <button

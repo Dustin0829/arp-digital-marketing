@@ -8,15 +8,6 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-2">
-            <div className="mb-4">
-              <Image
-                src="/services/logo-arp.png"
-                alt="ARP Digital Marketing"
-                width={200}
-                height={48}
-                className="h-12 w-auto"
-              />
-            </div>
             <p className="text-gray-300 max-w-md text-pretty">
               Building brands with <span className="text-red-400">passion</span> through innovative digital marketing strategies that deliver measurable
               results.

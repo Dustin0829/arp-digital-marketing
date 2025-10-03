@@ -64,7 +64,6 @@ export function ServicesSection() {
           </Fade>
         </div>
 
-        {/* Top Row - 4 Cards */}
         <Slide direction="up" cascade damping={0.2} triggerOnce>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {services.slice(0, 4).map((service) => (
@@ -72,11 +71,9 @@ export function ServicesSection() {
                 key={service.title}
                 className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white relative overflow-hidden"
               >
-                {/* Red border accent */}
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-600"></div>
                 
                 <CardContent className="p-0">
-                  {/* Service Image */}
                   <div className="relative h-48 sm:h-56 md:h-60 overflow-hidden">
                     <Image
                       src={service.image}
@@ -84,7 +81,6 @@ export function ServicesSection() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    {/* OUR SERVICES badge */}
                     <div className="absolute top-4 right-4">
                       <div className="bg-red-600 text-white px-3 py-1 rounded text-xs font-bold">
                         OUR SERVICES
@@ -92,7 +88,6 @@ export function ServicesSection() {
                     </div>
                   </div>
                   
-                  {/* Content */}
                   <div className="p-6 space-y-4">
                     <h3 className="text-2xl font-bold text-black leading-tight">{service.title}</h3>
                     <p className="text-gray-700 text-sm leading-relaxed">{service.description}</p>
@@ -103,7 +98,6 @@ export function ServicesSection() {
           </div>
         </Slide>
 
-        {/* Bottom Row - 3 Centered Cards */}
         <Slide direction="up" cascade damping={0.3} triggerOnce delay={400}>
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
@@ -112,11 +106,9 @@ export function ServicesSection() {
                   key={service.title}
                   className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white relative overflow-hidden"
                 >
-                  {/* Red border accent */}
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-600"></div>
                   
                   <CardContent className="p-0">
-                    {/* Service Image */}
                     <div className="relative h-48 sm:h-56 md:h-60 overflow-hidden">
                       <Image
                         src={service.image}
@@ -124,7 +116,6 @@ export function ServicesSection() {
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
-                      {/* OUR SERVICES badge */}
                       <div className="absolute top-4 right-4">
                         <div className="bg-red-600 text-white px-3 py-1 rounded text-xs font-bold">
                           OUR SERVICES
@@ -132,7 +123,6 @@ export function ServicesSection() {
                       </div>
                     </div>
                     
-                    {/* Content */}
                     <div className="p-6 space-y-4">
                       <h3 className="text-2xl font-bold text-black leading-tight">{service.title}</h3>
                       <p className="text-gray-700 text-sm leading-relaxed">{service.description}</p>

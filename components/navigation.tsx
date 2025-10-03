@@ -20,15 +20,15 @@ export function Navigation() {
     <nav className="sticky top-0 z-50 bg-white border-b border-border h-[80px]">
       <div className="container mx-auto px-6 h-full">
         <div className="flex items-center justify-between h-full">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/services/logo-arp.png"
-              alt="ARP Digital Marketing"
-              width={280}
-              height={64}
-              className="h-24 w-auto"
-            />
-          </Link>
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/logo.png"
+                  alt="ARP Digital Marketing"
+                  width={280}
+                  height={64}
+                  className="h-16 w-auto"
+                />
+              </Link>
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
