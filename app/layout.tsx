@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: 'Transform your digital presence with expert marketing strategies that drive real results. We offer social media management, paid ads, graphic design, content creation, and more.',
     images: [
       {
-        url: '/metadata.png',
+        url: 'https://www.arpdigitalmarketing.site/metadata.png',
         width: 1200,
         height: 630,
         alt: 'ARP Digital Marketing - Building Brands With Passion',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     creator: '@arpdigitalmarketing',
     title: 'ARP Digital Marketing - Building Brands With Passion',
     description: 'Transform your digital presence with expert marketing strategies that drive real results.',
-    images: ['/metadata.png'],
+    images: ['https://www.arpdigitalmarketing.site/metadata.png'],
   },
   other: {
     'fb:app_id': 'your-facebook-app-id',
