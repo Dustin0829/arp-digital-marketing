@@ -26,7 +26,7 @@ export function Navigation() {
                   alt="ARP Digital Marketing"
                   width={280}
                   height={64}
-                  className="h-16 w-auto"
+                  className="h-14 w-auto"
                 />
               </Link>
 
@@ -36,12 +36,27 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 className="text-foreground hover:text-red-600 transition-colors font-medium"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const element = document.querySelector(link.href)
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
               >
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="bg-red-600 hover:bg-red-700 text-white">
-              <Link href="#contact">Book Consultation</Link>
+            <Button 
+              className="bg-red-600 hover:bg-red-700 text-white"
+              onClick={() => {
+                const element = document.querySelector('#contact')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+            >
+              Book Consultation
             </Button>
           </div>
 
@@ -57,15 +72,29 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 className="text-foreground hover:text-red-600 transition-colors font-medium"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  setIsOpen(false)
+                  const element = document.querySelector(link.href)
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
               >
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="bg-red-600 hover:bg-red-700 text-white w-full">
-              <Link href="#contact" onClick={() => setIsOpen(false)}>
-                Book Consultation
-              </Link>
+            <Button 
+              className="bg-red-600 hover:bg-red-700 text-white w-full"
+              onClick={() => {
+                setIsOpen(false)
+                const element = document.querySelector('#contact')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+            >
+              Book Consultation
             </Button>
           </div>
         )}

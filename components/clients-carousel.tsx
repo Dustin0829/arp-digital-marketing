@@ -24,9 +24,9 @@ export function ClientsCarousel() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Fade duration={1500}>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
-                Our <span className="text-red-600">Top Clients</span>
-              </h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+              Our <span className="text-red-600">Top Clients</span>
+            </h2>
             </Fade>
             <Fade delay={300} duration={1200}>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
@@ -39,7 +39,7 @@ export function ClientsCarousel() {
             <div className="flex animate-scroll">
               {duplicatedLogos.map((client, index) => (
                 <div key={`${client.name}-${index}`} className="flex-shrink-0 w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 px-4">
-                  <div className="bg-white p-4 md:p-6 rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105">
+                      <div className="bg-white p-4 md:p-6 rounded-lg transition-all duration-300 hover:scale-105">
                     <div className="relative w-full h-16 md:h-20 lg:h-24">
                       <Image
                         src={client.image}

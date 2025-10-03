@@ -9,7 +9,7 @@ import { Fade, Slide } from "react-awesome-reveal"
 
 export function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(true)
+  const [isMuted, setIsMuted] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const togglePlayPause = () => {
@@ -40,7 +40,9 @@ export function HeroSection() {
     const video = videoRef.current
     if (video) {
       video.pause()
+      video.muted = false
       setIsPlaying(false)
+      setIsMuted(false)
     }
   }, [])
 
@@ -68,7 +70,7 @@ export function HeroSection() {
                 size="lg"
                 className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6"
               >
-                <Link href="#contact">Book a Free Consultation</Link>
+                <Link href="#contact">Book a Consultation</Link>
               </Button>
             </Fade>
           </div>
@@ -78,7 +80,6 @@ export function HeroSection() {
             <video
               ref={videoRef}
               className="w-full h-full object-cover rounded-lg cursor-pointer"
-              muted
               loop
               playsInline
               onClick={togglePlayPause}
@@ -103,22 +104,6 @@ export function HeroSection() {
               </div>
             )}
 
-            <div className="absolute bottom-4 right-4">
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  toggleMute()
-                }}
-                className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg"
-                aria-label={isMuted ? "Unmute video" : "Mute video"}
-              >
-                {isMuted ? (
-                  <VolumeX className="w-5 h-5" />
-                ) : (
-                  <Volume2 className="w-5 h-5" />
-                )}
-              </Button>
-            </div>
 
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent pointer-events-none" />
             </div>

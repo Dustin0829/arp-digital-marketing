@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
 import { useState } from "react"
-import { Fade, Slide } from "react-awesome-reveal"
+import { Fade, Slide, Zoom, Bounce } from "react-awesome-reveal"
 
 export function ContactSection() {
   const [result, setResult] = useState("")
@@ -50,20 +50,20 @@ export function ContactSection() {
     <section id="contact" className="py-20 md:py-32 bg-muted">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Fade duration={1500}>
+          <Zoom duration={1500}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
               Get In <span className="text-red-600">Touch</span>
             </h2>
-          </Fade>
-          <Fade delay={300} duration={1200}>
+          </Zoom>
+          <Zoom delay={300} duration={1200}>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Ready to start your digital marketing journey? Contact us today for a free consultation
+              Ready to start your digital marketing journey? Contact us today for a consultation
             </p>
-          </Fade>
+          </Zoom>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <Slide direction="left" duration={1500} delay={400}>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <Bounce duration={1500} delay={400}>
             <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
@@ -144,9 +144,9 @@ export function ContactSection() {
               </div>
             </div>
             </div>
-          </Slide>
+          </Bounce>
 
-          <Slide direction="right" duration={1500} delay={600}>
+          <Bounce duration={1500} delay={600}>
             <div>
             <form onSubmit={onSubmit} className="space-y-6">
               <input type="checkbox" name="botcheck" className="hidden" style={{display: 'none'}} />
@@ -200,7 +200,7 @@ export function ContactSection() {
               )}
             </form>
             </div>
-          </Slide>
+          </Bounce>
         </div>
       </div>
     </section>
