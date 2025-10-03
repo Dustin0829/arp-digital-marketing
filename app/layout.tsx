@@ -31,11 +31,11 @@ export const metadata: Metadata = {
     description: 'Transform your digital presence with expert marketing strategies that drive real results. We offer social media management, paid ads, graphic design, content creation, and more.',
     images: [
       {
-        url: 'https://www.arpdigitalmarketing.site/metadata.png',
+        url: 'https://www.arpdigitalmarketing.site/metadata2.jpeg',
         width: 1200,
         height: 630,
         alt: 'ARP Digital Marketing - Building Brands With Passion',
-        type: 'image/png',
+        type: 'image/jpeg',
       },
     ],
   },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     creator: '@arpdigitalmarketing',
     title: 'ARP Digital Marketing - Building Brands With Passion',
     description: 'Transform your digital presence with expert marketing strategies that drive real results.',
-    images: ['https://www.arpdigitalmarketing.site/metadata.png'],
+    images: ['https://www.arpdigitalmarketing.site/metadata2.jpeg'],
   },
   other: {
     'fb:app_id': 'your-facebook-app-id',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     'tiktok:site': '@arpdigitalmarketing',
     'og:image:width': '1200',
     'og:image:height': '630',
-    'og:image:type': 'image/png',
+    'og:image:type': 'image/jpeg',
     'og:image:alt': 'ARP Digital Marketing - Building Brands With Passion',
     'og:updated_time': new Date().toISOString(),
     'article:author': 'ARP Digital Marketing',
@@ -76,11 +76,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta property="og:image" content="https://www.arpdigitalmarketing.site/metadata.png" />
-        <meta property="og:image:secure_url" content="https://www.arpdigitalmarketing.site/metadata.png" />
+        <meta property="og:image" content="https://www.arpdigitalmarketing.site/metadata2.jpeg" />
+        <meta property="og:image:secure_url" content="https://www.arpdigitalmarketing.site/metadata2.jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:alt" content="ARP Digital Marketing - Building Brands With Passion" />
         <meta property="og:title" content="ARP Digital Marketing - Building Brands With Passion" />
         <meta property="og:description" content="Transform your digital presence with expert marketing strategies that drive real results. We offer social media management, paid ads, graphic design, content creation, and more." />
@@ -89,7 +89,7 @@ export default function RootLayout({
         <meta property="og:site_name" content="ARP Digital Marketing" />
         <meta property="og:locale" content="en_US" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://www.arpdigitalmarketing.site/metadata.png" />
+        <meta name="twitter:image" content="https://www.arpdigitalmarketing.site/metadata2.jpeg" />
         <meta name="twitter:title" content="ARP Digital Marketing - Building Brands With Passion" />
         <meta name="twitter:description" content="Transform your digital presence with expert marketing strategies that drive real results." />
         <meta name="twitter:site" content="@arpdigitalmarketing" />
