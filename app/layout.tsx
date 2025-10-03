@@ -5,9 +5,13 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'ARP Digital Marketing',
+  description: 'Building brands with passion through innovative digital marketing strategies that deliver measurable results.',
+  icons: {
+    icon: '/services/logo-arp.png',
+    shortcut: '/services/logo-arp.png',
+    apple: '/services/logo-arp.png',
+  },
 }
 
 export default function RootLayout({

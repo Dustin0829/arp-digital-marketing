@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Facebook, Instagram, Linkedin } from "lucide-react"
 
 export function Footer() {
@@ -7,8 +8,14 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-2">
-            <div className="h-12 w-48 bg-gray-800 border border-gray-700 rounded flex items-center justify-center mb-4">
-              <span className="text-lg font-bold text-gray-300">ARP <span className="text-red-500">Digital</span> Marketing</span>
+            <div className="mb-4">
+              <Image
+                src="/services/logo-arp.png"
+                alt="ARP Digital Marketing"
+                width={200}
+                height={48}
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-gray-300 max-w-md text-pretty">
               Building brands with <span className="text-red-400">passion</span> through innovative digital marketing strategies that deliver measurable
@@ -80,13 +87,24 @@ export function Footer() {
               <Instagram className="w-5 h-5" />
             </a>
             <a
-              href="https://www.linkedin.com/company/arpdigitalmarketing"
+              href="https://www.linkedin.com/company/arp-digital-marketing/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-red-400 transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.tiktok.com/@arpdigitalmarketing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-red-400 transition-colors"
+              aria-label="TikTok"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+              </svg>
             </a>
           </div>
         </div>

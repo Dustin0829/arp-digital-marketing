@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Fade, Slide } from "react-awesome-reveal"
 
 const clientVideos = [
   {
@@ -76,6 +77,27 @@ export function TestimonialsSection() {
     }
   }
 
+  const toggleVideoPlayPause = (videoIndex: number) => {
+    handleUserInteraction()
+    const video = videoRefs.current[videoIndex]
+    if (video) {
+      if (video.paused) {
+        // Pause all other videos first
+        videoRefs.current.forEach((v, index) => {
+          if (v && index !== videoIndex) {
+            v.pause()
+          }
+        })
+        video.muted = isMuted
+        video.play().catch(console.error)
+        setPlayingVideoIndex(videoIndex)
+      } else {
+        video.pause()
+        setPlayingVideoIndex(null)
+      }
+    }
+  }
+
   const nextVideo = () => {
     console.log('Next video clicked')
     handleUserInteraction()
@@ -131,18 +153,22 @@ export function TestimonialsSection() {
     <section id="testimonials" className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-            What Our <span className="text-red-600">Clients Say</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Don't just take our word for it - hear from businesses we've helped grow
-          </p>
+          <Fade duration={1500}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+              What Our <span className="text-red-600">Clients Say</span>
+            </h2>
+          </Fade>
+          <Fade delay={300} duration={1200}>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+              Don't just take our word for it - hear from businesses we've helped grow
+            </p>
+          </Fade>
         </div>
 
         <div className="relative max-w-7xl mx-auto">
           <Button
             onClick={prevVideo}
-            className="absolute -left-16 top-1/2 -translate-y-1/2 z-30 bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg cursor-pointer"
+            className="absolute -left-16 top-1/2 -translate-y-1/2 z-30 bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg cursor-pointer hidden md:flex"
             aria-label="Previous video"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -150,7 +176,7 @@ export function TestimonialsSection() {
           
           <Button
             onClick={nextVideo}
-            className="absolute -right-16 top-1/2 -translate-y-1/2 z-30 bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg cursor-pointer"
+            className="absolute -right-16 top-1/2 -translate-y-1/2 z-30 bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg cursor-pointer hidden md:flex"
             aria-label="Next video"
           >
             <ChevronRight className="w-6 h-6" />
@@ -164,13 +190,13 @@ export function TestimonialsSection() {
                   index === 2 
                     ? 'z-20' 
                     : index === 1 || index === 3
-                    ? 'z-10'
-                    : 'opacity-70 z-0'
+                    ? 'z-10 hidden md:block'
+                    : 'opacity-70 z-0 hidden md:block'
                 }`}
               >
                 <video
                   ref={(el) => (videoRefs.current[index] = el)}
-                  className={`object-cover rounded-lg shadow-xl ${
+                  className={`object-cover rounded-lg shadow-xl cursor-pointer ${
                     index === 2 
                       ? 'w-80 h-[500px] md:w-96 md:h-[600px]' 
                       : index === 1 || index === 3
@@ -181,6 +207,8 @@ export function TestimonialsSection() {
                   loop
                   playsInline
                   preload="metadata"
+                  onClick={() => toggleVideoPlayPause(index)}
+                  style={{ pointerEvents: 'auto' }}
                 >
                   <source src={video.src} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -214,7 +242,7 @@ export function TestimonialsSection() {
                         </svg>
                       ) : (
                         <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.794L4.617 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.617l3.766-3.794a1 1 0 011.617.794zM12.293 7.293a1 1 0 111.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.794L4.617 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.617l3.766-3.794a1 1 0 011.617.794zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
                         </svg>
                       )}
                     </Button>
@@ -231,7 +259,26 @@ export function TestimonialsSection() {
             ))}
           </div>
 
-          <div className="flex justify-center gap-2 mt-8">
+          {/* Mobile Navigation Buttons */}
+          <div className="flex justify-center gap-4 mt-8 md:hidden">
+            <Button
+              onClick={prevVideo}
+              className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg"
+              aria-label="Previous video"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </Button>
+            <Button
+              onClick={nextVideo}
+              className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg"
+              aria-label="Next video"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </Button>
+          </div>
+
+          {/* Desktop Dots Navigation */}
+          <div className="hidden md:flex justify-center gap-2 mt-8">
             {clientVideos.map((_, index) => (
               <button
                 key={index}

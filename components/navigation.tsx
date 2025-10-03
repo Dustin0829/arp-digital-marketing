@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -16,13 +17,17 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-border">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-white border-b border-border h-[80px]">
+      <div className="container mx-auto px-6 h-full">
+        <div className="flex items-center justify-between h-full">
           <Link href="/" className="flex items-center">
-            <div className="h-12 w-48 bg-muted border border-border rounded flex items-center justify-center">
-              <span className="text-lg font-bold text-muted-foreground">ARP <span className="text-red-600">Digital</span> Marketing</span>
-            </div>
+            <Image
+              src="/services/logo-arp.png"
+              alt="ARP Digital Marketing"
+              width={280}
+              height={64}
+              className="h-24 w-auto"
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
@@ -30,7 +35,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground hover:text-primary transition-colors font-medium"
+                className="text-foreground hover:text-red-600 transition-colors font-medium"
               >
                 {link.label}
               </Link>
@@ -46,12 +51,12 @@ export function Navigation() {
         </div>
 
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4 flex flex-col gap-4">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-border px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground hover:text-primary transition-colors font-medium"
+                className="text-foreground hover:text-red-600 transition-colors font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
