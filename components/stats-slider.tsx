@@ -12,7 +12,7 @@ export function StatsSlider() {
 
   return (
     <div className="relative overflow-hidden bg-red-800 py-4">
-      <div className="flex animate-scroll-slow">
+      <div className="flex animate-scroll">
         {duplicatedStats.map((stat, index) => (
           <div
             key={`${stat}-${index}`}
