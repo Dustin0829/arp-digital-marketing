@@ -77,7 +77,6 @@ export function TextTestimonialsSection() {
         <div className="max-w-4xl mx-auto">
           <Fade delay={900} duration={1200}>
             <div className="relative">
-              {/* Navigation Arrows */}
               <button
                 onClick={prevTestimonial}
                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors shadow-lg"
@@ -94,7 +93,6 @@ export function TextTestimonialsSection() {
                 <ChevronRight className="w-6 h-6 text-gray-600" />
               </button>
 
-              {/* Testimonial Card */}
               <div className="bg-gradient-to-br from-red-800 to-red-900 rounded-2xl p-8 md:p-12 shadow-2xl relative">
                 <div className="flex items-start gap-4 mb-6">
                   <Quote className="w-12 h-12 text-red-400 flex-shrink-0" />
@@ -106,7 +104,6 @@ export function TextTestimonialsSection() {
                   </div>
                 </div>
 
-                {/* Star Rating */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(current.rating)].map((_, i) => (
                     <svg
@@ -120,7 +117,6 @@ export function TextTestimonialsSection() {
                   ))}
                 </div>
 
-                {/* Author Info and Logo */}
                 <div className="flex justify-between items-end">
                   <div>
                     <h4 className="text-red-400 font-bold text-lg mb-1">
@@ -131,7 +127,6 @@ export function TextTestimonialsSection() {
                     </p>
                   </div>
                   
-                  {/* Client Logo */}
                   {current.logo && (
                     <div className="ml-4">
                       <Image
@@ -146,7 +141,6 @@ export function TextTestimonialsSection() {
                 </div>
               </div>
 
-              {/* Dots Indicator */}
               <div className="flex justify-center gap-2 mt-6">
                 {testimonials.map((_, index) => (
                   <button

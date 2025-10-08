@@ -46,7 +46,6 @@ export function FAQSection() {
 
   return (
     <section className="py-12 md:py-16 bg-gray-50 relative">
-      {/* Red Background Shadow */}
       <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 via-red-500/5 to-red-600/10"></div>
       <div className="container mx-auto px-6 md:px-8 lg:px-12 relative z-10">
         <div className="text-center mb-12">

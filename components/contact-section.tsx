@@ -19,28 +19,22 @@ export function ContactSection() {
     formData.append("access_key", "e4cfe46a-5029-4375-a2c5-a521b34b61a0")
 
     try {
-      console.log("Sending form data to Web3Forms...")
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData
       })
 
-      console.log("Response status:", response.status)
       const data = await response.json()
-      console.log("Response data:", data)
 
       if (data.success) {
         setResult("Form Submitted Successfully")
-        // Reset form safely
         if (event.currentTarget && event.currentTarget.reset) {
           event.currentTarget.reset()
         }
       } else {
-        console.log("Web3Forms Error:", data)
         setResult(data.message || "Form submission failed. Please try again.")
       }
     } catch (error) {
-      console.log("Network/Request Error:", error)
       setResult("Something went wrong. Please try again.")
     }
   }

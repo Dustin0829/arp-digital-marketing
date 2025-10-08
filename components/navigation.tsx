@@ -23,17 +23,14 @@ export function Navigation() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
 
-      // Clear the previous timeout
       clearTimeout(scrollTimeout)
 
-      // Hide navigation when scrolling down, show when scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false)
       } else if (currentScrollY < lastScrollY) {
         setIsVisible(true)
       }
 
-      // Set a timeout to show navigation when scrolling stops
       scrollTimeout = setTimeout(() => {
         setIsVisible(true)
       }, 150)
@@ -72,11 +69,9 @@ export function Navigation() {
                 href={link.href}
                 className="text-sm text-foreground hover:text-red-600 transition-colors font-medium"
                 onClick={(e) => {
-                  // If we're on the contact page, let the link navigate normally
                   if (window.location.pathname === '/contact') {
-                    return // Let the link work normally
+                    return
                   }
-                  // If we're on the home page, scroll to the section
                   e.preventDefault()
                   const element = document.querySelector(link.href.replace('/', ''))
                   if (element) {
@@ -113,11 +108,9 @@ export function Navigation() {
                 className="text-sm text-foreground hover:text-red-600 transition-colors font-medium"
                 onClick={(e) => {
                   setIsOpen(false)
-                  // If we're on the contact page, let the link navigate normally
                   if (window.location.pathname === '/contact') {
-                    return // Let the link work normally
+                    return
                   }
-                  // If we're on the home page, scroll to the section
                   e.preventDefault()
                   const element = document.querySelector(link.href.replace('/', ''))
                   if (element) {

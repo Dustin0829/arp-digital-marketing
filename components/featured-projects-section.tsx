@@ -50,7 +50,6 @@ export function FeaturedProjectsSection() {
         <div className="space-y-12 md:space-y-16">
           {featuredProjects.map((project, index) => (
             <div key={project.id} className={`flex flex-col ${project.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-16`}>
-              {/* Text Content */}
               <div className={`flex-1 ${project.reverse ? 'lg:pl-8' : 'lg:pr-8'}`}>
                 <Slide direction={project.reverse ? "right" : "left"} triggerOnce>
                   <div className="space-y-4">
@@ -89,7 +88,6 @@ export function FeaturedProjectsSection() {
                 </Slide>
               </div>
 
-              {/* Image Content */}
               <div className="flex-1 w-full">
                 <Slide direction={project.reverse ? "left" : "right"} triggerOnce>
                   <div className="relative w-full">
@@ -111,7 +109,6 @@ export function FeaturedProjectsSection() {
           ))}
         </div>
 
-        {/* Call to Action */}
         <Fade delay={600} duration={1500}>
           <div className="text-center mt-12">
             <Button 

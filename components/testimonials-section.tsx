@@ -17,7 +17,7 @@ const clientVideos = [
     src: "/client2.mp4",
   },
   {
-    id: 3,
+    id: 3,  
     src: "/client3.mp4",
     name: "Josh Mojica",
     company: "KCO",
@@ -32,14 +32,10 @@ const clientVideos = [
     id: 5,
     src: "/client5.mp4",
   },
-  {
-    id: 6,
-    src: "/client6.mp4",
-  },
 ]
 
 export function TestimonialsSection() {
-  const [currentIndex, setCurrentIndex] = useState(2) // Start with middle video (index 2)
+  const [currentIndex, setCurrentIndex] = useState(2)
   const [hasUserInteracted, setHasUserInteracted] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null)
@@ -65,14 +61,12 @@ export function TestimonialsSection() {
   const playMiddleVideo = () => {
     handleUserInteraction()
     
-    // Pause all videos first
     videoRefs.current.forEach((video) => {
       if (video) {
         video.pause()
       }
     })
     
-    // Play only the middle video (index 2)
     const middleVideo = videoRefs.current[2]
     if (middleVideo) {
       middleVideo.muted = isMuted
@@ -86,7 +80,6 @@ export function TestimonialsSection() {
     const video = videoRefs.current[videoIndex]
     if (video) {
       if (video.paused) {
-        // Pause all other videos first
         videoRefs.current.forEach((v, index) => {
           if (v && index !== videoIndex) {
             v.pause()
@@ -103,9 +96,7 @@ export function TestimonialsSection() {
   }
 
   const nextVideo = () => {
-    console.log('Next video clicked')
     handleUserInteraction()
-    // Stop current playing video
     setPlayingVideoIndex(null)
     videoRefs.current.forEach((video) => {
       if (video) {
@@ -117,9 +108,7 @@ export function TestimonialsSection() {
   }
 
   const prevVideo = () => {
-    console.log('Previous video clicked')
     handleUserInteraction()
-    // Stop current playing video
     setPlayingVideoIndex(null)
     videoRefs.current.forEach((video) => {
       if (video) {
@@ -132,7 +121,6 @@ export function TestimonialsSection() {
 
   const goToVideo = (index: number) => {
     handleUserInteraction()
-    // Stop current playing video
     setPlayingVideoIndex(null)
     videoRefs.current.forEach((video) => {
       if (video) {
@@ -142,7 +130,6 @@ export function TestimonialsSection() {
     })
     setCurrentIndex(index)
     
-    // Auto-play the video after moving to center
     setTimeout(() => {
       const centerVideoIndex = 2
       const videoElement = videoRefs.current[centerVideoIndex]
@@ -164,16 +151,16 @@ export function TestimonialsSection() {
   const rotatedVideos = getRotatedVideos()
 
   return (
-    <section id="testimonials" className="py-12 md:py-16 bg-background">
-      <div className="container mx-auto px-6 md:px-8 lg:px-12">
-        <div className="text-center mb-10">
+    <section id="testimonials" className="py-20 md:py-32 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
           <Fade duration={1500}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-balance">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
               What Our <span className="text-red-600">Clients Say</span>
             </h2>
           </Fade>
           <Fade delay={300} duration={1200}>
-            <p className="text-base text-muted-foreground max-w-2xl mx-auto text-pretty">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
               Don't just take our word for it - hear from businesses we've helped grow
             </p>
           </Fade>
@@ -197,7 +184,7 @@ export function TestimonialsSection() {
           </Button>
 
           <div className="flex gap-6 justify-center items-center overflow-hidden" style={{ pointerEvents: 'none' }}>
-            {rotatedVideos.slice(0, 5).map((video, index) => (
+            {rotatedVideos.map((video, index) => (
               <div 
                 key={video.id} 
                 className={`relative transition-all duration-500 ${
@@ -223,7 +210,7 @@ export function TestimonialsSection() {
                   preload="metadata"
                   onClick={() => {
                     if (index !== 2) {
-                      goToVideo((currentIndex + index) % clientVideos.length)
+                      goToVideo(index)
                     } else {
                       toggleVideoPlayPause(index)
                     }
