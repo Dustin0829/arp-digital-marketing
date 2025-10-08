@@ -2,43 +2,83 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#services", label: "Services" },
-    { href: "#testimonials", label: "Testimonials" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#home", label: "Home" },
+    { href: "/#services", label: "Services" },
+    { href: "/#testimonials", label: "Testimonials" },
   ]
 
-  return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-border h-[80px]">
-      <div className="container mx-auto px-6 h-full">
-        <div className="flex items-center justify-between h-full">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/logo.png"
-                  alt="ARP Digital Marketing"
-                  width={280}
-                  height={64}
-                  className="h-14 w-auto"
-                />
-              </Link>
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout
 
-          <div className="hidden md:flex items-center gap-8">
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+
+      // Clear the previous timeout
+      clearTimeout(scrollTimeout)
+
+      // Hide navigation when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true)
+      }
+
+      // Set a timeout to show navigation when scrolling stops
+      scrollTimeout = setTimeout(() => {
+        setIsVisible(true)
+      }, 150)
+
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(scrollTimeout)
+    }
+  }, [lastScrollY])
+
+  return (
+    <nav className={`sticky top-0 z-50 bg-white border-b border-border h-[70px] transition-transform duration-300 ease-in-out ${
+      isVisible ? 'translate-y-0' : '-translate-y-full'
+    }`}>
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 h-full">
+        <div className="flex items-center justify-between h-full">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="ARP Digital Marketing"
+              width={200}
+              height={48}
+              className="h-10 w-auto"
+            />
+          </Link>
+
+          <div className="hidden md:flex items-center gap-6 flex-1 justify-center">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground hover:text-red-600 transition-colors font-medium"
+                className="text-sm text-foreground hover:text-red-600 transition-colors font-medium"
                 onClick={(e) => {
+                  // If we're on the contact page, let the link navigate normally
+                  if (window.location.pathname === '/contact') {
+                    return // Let the link work normally
+                  }
+                  // If we're on the home page, scroll to the section
                   e.preventDefault()
-                  const element = document.querySelector(link.href)
+                  const element = document.querySelector(link.href.replace('/', ''))
                   if (element) {
                     element.scrollIntoView({ behavior: 'smooth' })
                   }
@@ -47,35 +87,39 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
+          </div>
+
+          <div className="hidden md:flex">
             <Button 
-              className="bg-red-600 hover:bg-red-700 text-white"
-              onClick={() => {
-                const element = document.querySelector('#contact')
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
+              asChild
+              size="sm"
+              className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2"
             >
-              Book Consultation
+              <Link href="/contact">Book Consultation</Link>
             </Button>
           </div>
 
           <button className="md:hidden text-foreground" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
         {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-border px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-border px-6 py-3 flex flex-col gap-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground hover:text-red-600 transition-colors font-medium"
+                className="text-sm text-foreground hover:text-red-600 transition-colors font-medium"
                 onClick={(e) => {
-                  e.preventDefault()
                   setIsOpen(false)
-                  const element = document.querySelector(link.href)
+                  // If we're on the contact page, let the link navigate normally
+                  if (window.location.pathname === '/contact') {
+                    return // Let the link work normally
+                  }
+                  // If we're on the home page, scroll to the section
+                  e.preventDefault()
+                  const element = document.querySelector(link.href.replace('/', ''))
                   if (element) {
                     element.scrollIntoView({ behavior: 'smooth' })
                   }
@@ -85,16 +129,11 @@ export function Navigation() {
               </Link>
             ))}
             <Button 
-              className="bg-red-600 hover:bg-red-700 text-white w-full"
-              onClick={() => {
-                setIsOpen(false)
-                const element = document.querySelector('#contact')
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
+              asChild
+              size="sm"
+              className="bg-red-600 hover:bg-red-700 text-white w-full text-sm"
             >
-              Book Consultation
+              <Link href="/contact">Book Consultation</Link>
             </Button>
           </div>
         )}

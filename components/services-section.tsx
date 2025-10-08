@@ -1,138 +1,211 @@
-import { Card, CardContent } from "@/components/ui/card"
+"use client"
+
+import { useState } from "react"
+import { Fade } from "react-awesome-reveal"
+import { Button } from "@/components/ui/button"
+import { Monitor, Megaphone, Image as ImageIcon, Users, Mail, Camera, ShoppingBag } from "lucide-react"
 import Image from "next/image"
-import { Fade, Slide } from "react-awesome-reveal"
+import Link from "next/link"
 
 const services = [
   {
-    number: 1,
-    title: "Social Media Management",
-    description: "We plan, post, and stay consistent so your brand shows up and stands out, every time.",
-    image: "/services/social-media-management.jpg",
+    id: "graphic-design",
+    name: "Graphic Design",
+    icon: ImageIcon,
+    details: {
+      title: "Graphic Design",
+      steps: [
+        {
+          number: 1,
+          title: "Brand Discovery",
+          description: "We start by understanding your brand identity, values, and visual direction to ensure every design aligns with your goals.",
+          image: "/service/discovery.png"
+        },
+        {
+          number: 2,
+          title: "Concept & Creation",
+          description: "From initial sketches to refined visuals — we craft designs that grab attention and communicate your message clearly.",
+          image: "/service/creation.png"
+        },
+        {
+          number: 3,
+          title: "Finalization & Delivery",
+          description: "We fine-tune the details and deliver print- and digital-ready assets that make your brand look its best.",
+          image: "/service/delivery.png"
+        }
+      ]
+    }
   },
   {
-    number: 2,
-    title: "Paid Ads Management",
-    description: "Our ad campaigns are built around your business goals and ideal audience, powered by data, guided by strategy and focused on the results.",
-    image: "/services/paid-ads.jpg",
+    id: "content-creation",
+    name: "Content Creation",
+    icon: Camera,
+    details: {
+      title: "Content Creation",
+      steps: [
+        {
+          number: 1,
+          title: "Strategy & Planning",
+          description: "We identify your target audience, define your message, and plan content that resonates across platforms.",
+          image: "/service/strategy.png"
+        },
+        {
+          number: 2,
+          title: "Production",
+          description: "From photo and video shoots to written copy, we produce engaging, high-quality content tailored to your brand.",
+          image: "/service/production.png"
+        },
+        {
+          number: 3,
+          title: "Publishing & Optimization",
+          description: "We optimize every piece for performance, ensuring your content drives engagement and delivers results.",
+          image: "/service/publishing.png"
+        }
+      ]
+    }
   },
   {
-    number: 3,
-    title: "Graphic Design",
-    description: "We craft branded visuals that grab attention, stop the scroll, and tell your story at first glance.",
-    image: "/services/graphic-design.jpg",
+    id: "paid-ads",
+    name: "Paid Ads Management",
+    icon: Megaphone,
+    details: {
+      title: "Paid Ads Management",
+      steps: [
+        {
+          number: 1,
+          title: "Market Research & Setup",
+          description: "We analyze your target audience, competitors, and goals to build ad campaigns that reach the right people.",
+          image: "/service/research.png"
+        },
+        {
+          number: 2,
+          title: "Campaign Execution",
+          description: "We create compelling visuals, write persuasive ad copy, and launch campaigns across top-performing platforms.",
+          image: "/service/campaign.png"
+        },
+        {
+          number: 3,
+          title: "Monitoring & Optimization",
+          description: "We continuously track performance, A/B test creatives, and adjust strategies to maximize ROI.",
+          image: "/service/monitoring.png"
+        }
+      ]
+    }
   },
   {
-    number: 4,
-    title: "Copywriting",
-    description: "We know what to say and how to say it. Let us help you talk to your audience in a way that actually clicks.",
-    image: "/services/copywriting.jpg",
-  },
-  {
-    number: 5,
-    title: "Marketing Virtual Assistance",
-    description: "Get the daily report you need from someone trained in digital marketing and ready to execute.",
-    image: "/services/marketing-virtual.jpg",
-  },
-  {
-    number: 6,
-    title: "Email Marketing",
-    description: "Build relationships right from the inbox with targeted campaigns that nurture and convert.",
-    image: "/services/email-marketing.jpg",
-  },
-  {
-    number: 7,
-    title: "Content Creation",
-    description: "We create photo and video content that tells your story, stops the scroll, and strengthens your online presence.",
-    image: "/services/content-creation.jpg",
-  },
+    id: "social-media",
+    name: "Social Media Management",
+    icon: Users,
+    details: {
+      title: "Social Media Management",
+      steps: [
+        {
+          number: 1,
+          title: "Social Audit & Strategy",
+          description: "We evaluate your current presence and create a strategy that boosts visibility and aligns with your brand voice.",
+          image: "/service/audit.png"
+        },
+        {
+          number: 2,
+          title: "Content Scheduling & Engagement",
+          description: "We plan, post, and interact with your audience consistently to keep your community active and engaged.",
+          image: "/service/schedule.png"
+        },
+        {
+          number: 3,
+          title: "Performance Tracking",
+          description: "We provide detailed reports and insights to help you understand what's working and what to improve next.",
+          image: "/service/tracking.png"
+        }
+      ]
+    }
+  }
 ]
 
 export function ServicesSection() {
+  const [selectedService, setSelectedService] = useState<string | null>("graphic-design")
+
+  const activeService = services.find(s => s.id === selectedService)
+
   return (
-    <section id="services" className="py-20 md:py-32 bg-muted">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+    <section id="services" className="py-12 md:py-16 bg-gray-900 text-white">
+      <div className="container mx-auto px-6 md:px-8 lg:px-12">
+        <div className="text-center mb-10">
           <Fade duration={1500}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              Our <span className="text-red-600">Services</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-balance">
+              Ready to <span className="text-red-600">Grow</span> Your Brand?
             </h2>
           </Fade>
           <Fade delay={300} duration={1200}>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Comprehensive digital marketing solutions tailored to elevate your brand
+            <p className="text-base text-gray-300 max-w-2xl mx-auto text-pretty">
+              Click on a service below to learn more
             </p>
           </Fade>
         </div>
 
-        <Slide direction="up" cascade damping={0.2} triggerOnce>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            {services.slice(0, 4).map((service) => (
-              <Card
-                key={service.title}
-                className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white relative overflow-hidden"
-              >
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-600"></div>
-                
-                <CardContent className="p-0">
-                  <div className="relative h-48 sm:h-56 md:h-60 overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 right-4">
-                      <div className="bg-red-600 text-white px-3 py-1 rounded text-xs font-bold">
-                        OUR SERVICES
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6 space-y-4">
-                    <h3 className="text-2xl font-bold text-black leading-tight">{service.title}</h3>
-                    <p className="text-gray-700 text-sm leading-relaxed">{service.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Slide>
-
-        <Slide direction="up" cascade damping={0.3} triggerOnce delay={400}>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
-              {services.slice(4, 7).map((service) => (
-                <Card
-                  key={service.title}
-                  className="group hover:shadow-2xl transition-all duration-300 border-0 bg-white relative overflow-hidden"
+        <Fade delay={500} duration={1500}>
+          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 max-w-4xl mx-auto mb-12">
+            {services.map((service) => {
+              const Icon = service.icon
+              return (
+                <button
+                  key={service.id}
+                  onClick={() => setSelectedService(service.id === selectedService ? null : service.id)}
+                  className={`px-6 py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg flex items-center gap-2 ${
+                    selectedService === service.id
+                      ? 'bg-white text-gray-900'
+                      : 'bg-transparent text-white border-2 border-gray-600 hover:border-gray-400'
+                  }`}
                 >
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-600"></div>
-                  
-                  <CardContent className="p-0">
-                    <div className="relative h-48 sm:h-56 md:h-60 overflow-hidden">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-4 right-4">
-                        <div className="bg-red-600 text-white px-3 py-1 rounded text-xs font-bold">
-                          OUR SERVICES
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="p-6 space-y-4">
-                      <h3 className="text-2xl font-bold text-black leading-tight">{service.title}</h3>
-                      <p className="text-gray-700 text-sm leading-relaxed">{service.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                  {service.name}
+                </button>
+              )
+            })}
           </div>
-        </Slide>
+        </Fade>
+
+        {activeService && (
+          <Fade key={activeService.id} duration={800}>
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                {activeService.details.steps.map((step) => (
+                  <div key={step.number} className="text-center">
+                    <div className="mb-4">
+                      {(activeService.id === "graphic-design" || activeService.id === "content-creation" || activeService.id === "paid-ads" || activeService.id === "social-media") && (step as any).image ? (
+                        <div className="w-16 h-16 mx-auto flex items-center justify-center">
+                          <Image
+                            src={(step as any).image}
+                            alt={step.title}
+                            width={64}
+                            height={64}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-16 h-16 mx-auto bg-red-600 rounded-lg flex items-center justify-center">
+                          <span className="text-2xl font-bold">{step.number}</span>
+                        </div>
+                      )}
+                    </div>
+                    <h4 className="text-lg font-bold mb-3">{step.title}</h4>
+                    <p className="text-sm text-gray-300 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center">
+                <Button 
+                  asChild
+                  className="bg-red-600 text-white hover:bg-red-700 transition-all duration-300 px-8 py-6 text-base font-semibold rounded-full"
+                >
+                  <Link href="/contact">Book a Free Consultation</Link>
+                </Button>
+              </div>
+            </div>
+          </Fade>
+        )}
       </div>
     </section>
   )

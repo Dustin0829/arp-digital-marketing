@@ -32,6 +32,10 @@ const clientVideos = [
     id: 5,
     src: "/client5.mp4",
   },
+  {
+    id: 6,
+    src: "/client6.mp4",
+  },
 ]
 
 export function TestimonialsSection() {
@@ -160,16 +164,16 @@ export function TestimonialsSection() {
   const rotatedVideos = getRotatedVideos()
 
   return (
-    <section id="testimonials" className="py-20 md:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+    <section id="testimonials" className="py-12 md:py-16 bg-background">
+      <div className="container mx-auto px-6 md:px-8 lg:px-12">
+        <div className="text-center mb-10">
           <Fade duration={1500}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-balance">
               What Our <span className="text-red-600">Clients Say</span>
             </h2>
           </Fade>
           <Fade delay={300} duration={1200}>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto text-pretty">
               Don't just take our word for it - hear from businesses we've helped grow
             </p>
           </Fade>
@@ -193,7 +197,7 @@ export function TestimonialsSection() {
           </Button>
 
           <div className="flex gap-6 justify-center items-center overflow-hidden" style={{ pointerEvents: 'none' }}>
-            {rotatedVideos.map((video, index) => (
+            {rotatedVideos.slice(0, 5).map((video, index) => (
               <div 
                 key={video.id} 
                 className={`relative transition-all duration-500 ${
@@ -205,7 +209,7 @@ export function TestimonialsSection() {
                 }`}
               >
                 <video
-                  ref={(el) => (videoRefs.current[index] = el)}
+                  ref={(el) => { videoRefs.current[index] = el }}
                   className={`object-cover rounded-lg shadow-xl cursor-pointer ${
                     index === 2 
                       ? 'w-80 h-[500px] md:w-96 md:h-[600px]' 
@@ -219,7 +223,7 @@ export function TestimonialsSection() {
                   preload="metadata"
                   onClick={() => {
                     if (index !== 2) {
-                      goToVideo(index)
+                      goToVideo((currentIndex + index) % clientVideos.length)
                     } else {
                       toggleVideoPlayPause(index)
                     }

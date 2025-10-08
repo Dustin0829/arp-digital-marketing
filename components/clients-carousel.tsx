@@ -20,16 +20,16 @@ export function ClientsCarousel() {
 
   return (
     <Fade duration={1500} triggerOnce>
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-6 md:px-8 lg:px-12">
+          <div className="text-center mb-8">
             <Fade duration={1500}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-balance">
               Our <span className="text-red-600">Top Clients</span>
             </h2>
             </Fade>
             <Fade delay={300} duration={1200}>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+              <p className="text-base text-muted-foreground max-w-2xl mx-auto text-pretty">
                 Trusted by leading brands to deliver exceptional digital marketing results
               </p>
             </Fade>

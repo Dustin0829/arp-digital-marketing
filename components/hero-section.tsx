@@ -2,65 +2,27 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import Image from "next/image"
-import { useState, useRef, useEffect } from "react"
-import { Play, Pause, Volume2, VolumeX } from "lucide-react"
-import { Fade, Slide } from "react-awesome-reveal"
+import { Fade } from "react-awesome-reveal"
+import { StatsSlider } from "@/components/stats-slider"
 
 export function HeroSection() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const togglePlayPause = () => {
-    console.log('togglePlayPause called, isPlaying:', isPlaying)
-    if (videoRef.current) {
-      if (isPlaying) {
-        console.log('Pausing video')
-        videoRef.current.pause()
-        setIsPlaying(false)
-      } else {
-        console.log('Playing video')
-        videoRef.current.play().catch(console.error)
-        setIsPlaying(true)
-      }
-    } else {
-      console.log('Video ref is null')
-    }
-  }
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted
-      setIsMuted(!isMuted)
-    }
-  }
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (video) {
-      video.pause()
-      video.muted = false
-      setIsPlaying(false)
-      setIsMuted(false)
-    }
-  }, [])
 
   return (
-    <section id="home" className="py-20 md:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+    <section id="home" className="relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/hero.png)' }}>
+      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="relative py-16 md:py-30">
+        <div className="container mx-auto px-6 md:px-8 lg:px-12">
+          <div className="text-center space-y-4">
             <Fade duration={1500}>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-balance leading-tight">
-                <div className="text-black">BUILDING BRANDS</div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight">
+                <div className="text-white">BUILDING BRANDS</div>
                 <div className="inline-block">
                   <span className="bg-red-600 text-white px-4 py-2">WITH PASSION</span>
                 </div>
               </h1>
             </Fade>
             <Fade delay={300} duration={1200}>
-              <p className="text-xl text-black md:text-2xl text-pretty">
+              <p className="text-lg text-white md:text-xl text-pretty max-w-2xl mx-auto">
                 Transform your digital presence with expert marketing strategies that drive real results
               </p>
             </Fade>
@@ -68,48 +30,15 @@ export function HeroSection() {
               <Button
                 asChild
                 size="lg"
-                className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6"
+                className="bg-red-600 hover:bg-red-700 text-white px-6 py-5"
               >
-                <Link href="#contact">Book a Consultation</Link>
+                <Link href="/contact">Book a Consultation</Link>
               </Button>
             </Fade>
           </div>
-
-              <Slide direction="right" duration={1500} delay={200}>
-            <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-2xl">
-            <video
-              ref={videoRef}
-              className="w-full h-full object-cover rounded-lg cursor-pointer"
-              loop
-              playsInline
-              onClick={togglePlayPause}
-            >
-              <source src="/hero-vid.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            
-            {!isPlaying && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Button
-                  onClick={(e) => {
-                    console.log('Play button clicked')
-                    e.stopPropagation()
-                    togglePlayPause()
-                  }}
-                  className="bg-red-600 hover:bg-red-700 text-white rounded-full w-16 h-16 p-0 shadow-lg"
-                  aria-label="Play video"
-                >
-                  <Play className="w-8 h-8 ml-1" />
-                </Button>
-              </div>
-            )}
-
-
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent pointer-events-none" />
-            </div>
-          </Slide>
         </div>
       </div>
+      <StatsSlider />
     </section>
   )
 }
