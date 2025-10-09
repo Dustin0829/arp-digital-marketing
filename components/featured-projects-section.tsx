@@ -77,9 +77,8 @@ export function FeaturedProjectsSection() {
                     )}
                     
                     <Button 
-                      variant="outline" 
                       size="sm"
-                      className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all duration-300 group"
+                      className="bg-red-600 text-white hover:bg-red-700 transition-all duration-300 group"
                     >
                       Read more
                       <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
