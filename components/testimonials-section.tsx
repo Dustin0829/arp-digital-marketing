@@ -32,6 +32,10 @@ const clientVideos = [
     id: 5,
     src: "/client5.mp4",
   },
+  {
+    id: 6,
+    src: "/client6.mp4",
+  },
 ]
 
 export function TestimonialsSection() {
@@ -145,7 +149,7 @@ export function TestimonialsSection() {
     for (let i = 0; i < currentIndex; i++) {
       rotated.push(rotated.shift()!)
     }
-    return rotated
+    return rotated.slice(0, 5)
   }
 
   const rotatedVideos = getRotatedVideos()
@@ -192,7 +196,9 @@ export function TestimonialsSection() {
                     ? 'z-20' 
                     : index === 1 || index === 3
                     ? 'z-10 hidden md:block'
-                    : 'opacity-70 z-0 hidden md:block'
+                    : index === 0 || index === 4
+                    ? 'opacity-70 z-0 hidden md:block'
+                    : 'hidden'
                 }`}
               >
                 <video
@@ -202,6 +208,8 @@ export function TestimonialsSection() {
                       ? 'w-80 h-[500px] md:w-96 md:h-[600px]' 
                       : index === 1 || index === 3
                       ? 'w-72 h-88 md:w-80 md:h-[520px]'
+                      : index === 0 || index === 4
+                      ? 'w-64 h-80 md:w-72 md:h-96'
                       : 'w-64 h-80 md:w-72 md:h-96'
                   }`}
                   muted={isMuted}

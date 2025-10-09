@@ -10,7 +10,7 @@ export function HeroSection() {
   return (
     <section id="home" className="relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/hero.png)' }}>
       <div className="absolute inset-0 bg-black/40"></div>
-      <div className="relative py-16 md:py-30">
+      <div className="relative py-16 md:py-38">
         <div className="container mx-auto px-6 md:px-8 lg:px-12">
           <div className="text-center space-y-4">
             <Fade duration={1500}>

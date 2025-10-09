@@ -11,7 +11,7 @@ export function StatsSlider() {
   const duplicatedStats = [...stats, ...stats, ...stats]
 
   return (
-    <div className="relative overflow-hidden bg-red-800 py-4">
+    <div className="relative overflow-hidden bg-red-800 py-3">
       <div className="flex animate-scroll">
         {duplicatedStats.map((stat, index) => (
           <div
