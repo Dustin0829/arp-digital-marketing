@@ -42,13 +42,29 @@ const testimonials = [
 
 export function TextTestimonialsSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+    if (isAnimating) return
+    setIsAnimating(true)
+    setSlideDirection('left')
+    setTimeout(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+      setSlideDirection(null)
+      setTimeout(() => setIsAnimating(false), 50)
+    }, 300)
   }
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    if (isAnimating) return
+    setIsAnimating(true)
+    setSlideDirection('right')
+    setTimeout(() => {
+      setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+      setSlideDirection(null)
+      setTimeout(() => setIsAnimating(false), 50)
+    }, 300)
   }
 
   const current = testimonials[currentTestimonial]
@@ -79,7 +95,8 @@ export function TextTestimonialsSection() {
             <div className="relative">
               <button
                 onClick={prevTestimonial}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors shadow-lg"
+                disabled={isAnimating}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all duration-200 shadow-lg hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="w-6 h-6 text-gray-600" />
@@ -87,13 +104,18 @@ export function TextTestimonialsSection() {
 
               <button
                 onClick={nextTestimonial}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors shadow-lg"
+                disabled={isAnimating}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-white border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all duration-200 shadow-lg hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="w-6 h-6 text-gray-600" />
               </button>
 
-              <div className="bg-gradient-to-br from-red-800 to-red-900 rounded-2xl p-8 md:p-12 shadow-2xl relative">
+              <div className={`bg-gradient-to-br from-red-800 to-red-900 rounded-2xl p-8 md:p-12 shadow-2xl relative transition-all duration-300 ease-in-out transform ${
+                slideDirection === 'left' ? 'translate-x-full opacity-0' : 
+                slideDirection === 'right' ? '-translate-x-full opacity-0' : 
+                'translate-x-0 opacity-100'
+              }`}>
                 <div className="flex items-start gap-4 mb-6">
                   <Quote className="w-12 h-12 text-red-400 flex-shrink-0" />
                   <div className="flex-1">

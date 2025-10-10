@@ -54,7 +54,7 @@ export function FeaturedProjectsSection() {
                 <Slide direction={project.reverse ? "right" : "left"} triggerOnce>
                   <div className="space-y-4">
                     <div>
-                      <span className="text-red-600 text-xs font-semibold tracking-wider uppercase">
+                      <span className="text-red-400 text-xs font-semibold tracking-wider uppercase">
                         Featured Project
                       </span>
                       <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">

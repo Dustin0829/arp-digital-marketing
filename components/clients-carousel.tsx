@@ -24,8 +24,8 @@ export function ClientsCarousel() {
         <div className="container mx-auto px-6 md:px-8 lg:px-12">
           <div className="text-center mb-8">
             <Fade duration={1500}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-balance">
-              Our <span className="text-red-600">Top Clients</span>
+            <h2 className="text-3xl md:text-4xl mb-3 text-balance">
+              <span className="font-semibold">Our</span> <span className="font-bold text-red-600">Top Clients</span>
             </h2>
             </Fade>
             <Fade delay={300} duration={1200}>

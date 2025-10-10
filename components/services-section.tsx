@@ -66,7 +66,7 @@ const services = [
   },
   {
     id: "paid-ads",
-    name: "Paid Ads Management",
+    name: "Social Media Advertising",
     icon: Megaphone,
     details: {
       title: "Paid Ads Management",
@@ -138,7 +138,7 @@ export function ServicesSection() {
           </Fade>
           <Fade delay={300} duration={1200}>
             <p className="text-base text-gray-300 max-w-2xl mx-auto text-pretty">
-              Click on a service below to learn more
+            Discover what each service can do for you
             </p>
           </Fade>
         </div>

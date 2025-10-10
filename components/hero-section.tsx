@@ -14,10 +14,12 @@ export function HeroSection() {
         <div className="container mx-auto px-6 md:px-8 lg:px-12">
           <div className="text-center space-y-4">
             <Fade duration={1500}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight">
-                <div className="text-white">BUILDING BRANDS</div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl text-balance leading-tight">
+                <div className="text-white">
+                  <span className="font-bold">BUILDING</span> <span className="font-semibold">BRANDS</span>
+                </div>
                 <div className="inline-block">
-                  <span className="bg-red-600 text-white px-4 py-2">WITH PASSION</span>
+                  <span className="bg-red-600 text-white px-4 py-2 font-semibold">WITH PASSION</span>
                 </div>
               </h1>
             </Fade>

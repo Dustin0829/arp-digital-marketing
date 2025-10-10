@@ -173,7 +173,7 @@ export function TestimonialsSection() {
         <div className="relative max-w-7xl mx-auto">
           <Button
             onClick={prevVideo}
-            className="absolute -left-16 top-1/2 -translate-y-1/2 z-30 bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg cursor-pointer hidden md:flex"
+            className="absolute -left-16 top-1/2 -translate-y-1/2 z-30 bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg cursor-pointer hidden md:flex transition-all duration-200 hover:scale-110 active:scale-95"
             aria-label="Previous video"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -181,36 +181,36 @@ export function TestimonialsSection() {
           
           <Button
             onClick={nextVideo}
-            className="absolute -right-16 top-1/2 -translate-y-1/2 z-30 bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg cursor-pointer hidden md:flex"
+            className="absolute -right-16 top-1/2 -translate-y-1/2 z-30 bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg cursor-pointer hidden md:flex transition-all duration-200 hover:scale-110 active:scale-95"
             aria-label="Next video"
           >
             <ChevronRight className="w-6 h-6" />
           </Button>
 
-          <div className="flex gap-6 justify-center items-center overflow-hidden" style={{ pointerEvents: 'none' }}>
+          <div className="flex gap-6 justify-center items-center overflow-hidden transition-all duration-700 ease-in-out" style={{ pointerEvents: 'none' }}>
             {rotatedVideos.map((video, index) => (
               <div 
                 key={video.id} 
-                className={`relative transition-all duration-500 ${
+                className={`relative transition-all duration-700 ease-in-out transform ${
                   index === 2 
-                    ? 'z-20' 
+                    ? 'z-20 scale-100 opacity-100' 
                     : index === 1 || index === 3
-                    ? 'z-10 hidden md:block'
+                    ? 'z-10 hidden md:block scale-90 opacity-80'
                     : index === 0 || index === 4
-                    ? 'opacity-70 z-0 hidden md:block'
+                    ? 'opacity-60 z-0 hidden md:block scale-80'
                     : 'hidden'
                 }`}
               >
                 <video
                   ref={(el) => { videoRefs.current[index] = el }}
-                  className={`object-cover rounded-lg shadow-xl cursor-pointer ${
+                  className={`object-cover rounded-lg shadow-xl cursor-pointer transition-all duration-700 ease-in-out ${
                     index === 2 
-                      ? 'w-80 h-[500px] md:w-96 md:h-[600px]' 
+                      ? 'w-80 h-[500px] md:w-96 md:h-[600px] shadow-2xl' 
                       : index === 1 || index === 3
-                      ? 'w-72 h-88 md:w-80 md:h-[520px]'
+                      ? 'w-72 h-88 md:w-80 md:h-[520px] shadow-lg'
                       : index === 0 || index === 4
-                      ? 'w-64 h-80 md:w-72 md:h-96'
-                      : 'w-64 h-80 md:w-72 md:h-96'
+                      ? 'w-64 h-80 md:w-72 md:h-96 shadow-md'
+                      : 'w-64 h-80 md:w-72 md:h-96 shadow-md'
                   }`}
                   muted={isMuted}
                   loop
@@ -233,7 +233,7 @@ export function TestimonialsSection() {
                   <div className="absolute inset-0 flex items-center justify-center z-40">
                     <Button
                       onClick={playMiddleVideo}
-                      className="bg-red-600 hover:bg-red-700 text-white rounded-full w-16 h-16 p-0 shadow-lg cursor-pointer"
+                      className="bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 text-white rounded-full w-16 h-16 p-0 shadow-lg cursor-pointer"
                       aria-label="Play video"
                       style={{ pointerEvents: 'auto' }}
                     >
@@ -257,14 +257,14 @@ export function TestimonialsSection() {
           <div className="flex justify-center gap-4 mt-8 md:hidden">
             <Button
               onClick={prevVideo}
-              className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg"
+              className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg transition-all duration-200 hover:scale-110 active:scale-95"
               aria-label="Previous video"
             >
               <ChevronLeft className="w-6 h-6" />
             </Button>
             <Button
               onClick={nextVideo}
-              className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg"
+              className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 p-0 shadow-lg transition-all duration-200 hover:scale-110 active:scale-95"
               aria-label="Next video"
             >
               <ChevronRight className="w-6 h-6" />

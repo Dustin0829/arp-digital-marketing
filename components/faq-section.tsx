@@ -45,52 +45,73 @@ export function FAQSection() {
   }
 
   return (
-    <section className="py-12 md:py-16 bg-gray-50 relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 via-red-500/5 to-red-600/10"></div>
-      <div className="container mx-auto px-6 md:px-8 lg:px-12 relative z-10">
-        <div className="text-center mb-12">
+    <section className="py-20 md:py-32 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-red-600/5 via-red-500/3 to-red-600/5"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-red-500 to-red-600"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
           <Fade duration={1500}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              <span className="text-red-600 italic">FAQs</span>
-            </h2>
+            <div className="inline-flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-sm font-bold">?</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                <span className="text-red-600">FAQs</span>
+              </h2>
+            </div>
           </Fade>
           <Fade delay={300} duration={1200}>
-            <p className="text-base text-gray-900 max-w-2xl mx-auto text-pretty">
-              Everything you need to know about our digital marketing services
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-pretty">
+              Get answers to the most common questions about our digital marketing services
             </p>
           </Fade>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <Fade cascade delay={600} duration={800}>
-            <div className="space-y-4">
-              {faqs.map((faq) => (
+            <div className="grid gap-6">
+              {faqs.map((faq, index) => (
                 <div
                   key={faq.id}
-                  className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
+                  className="group bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/50 overflow-hidden hover:shadow-xl hover:border-red-200 transition-all duration-300"
                 >
                   <button
                     onClick={() => toggleItem(faq.id)}
-                    className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                    className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gradient-to-r hover:from-red-50/50 hover:to-transparent transition-all duration-300"
                   >
-                    <span className="text-base md:text-lg font-semibold text-gray-900 pr-4 hover:underline transition-all duration-200">
-                      {faq.question}
-                    </span>
-                    <div className="flex-shrink-0">
-                      {openItems.includes(faq.id) ? (
-                        <ChevronUp className="w-5 h-5 text-red-600" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-red-600" />
-                      )}
+                    <div className="flex items-start gap-4 flex-1">
+                      <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center group-hover:bg-red-200 transition-colors duration-300">
+                        <span className="text-red-600 font-bold text-sm">{index + 1}</span>
+                      </div>
+                      <span className="text-lg md:text-xl font-semibold text-gray-900 pr-4 group-hover:text-red-700 transition-colors duration-300">
+                        {faq.question}
+                      </span>
+                    </div>
+                    <div className="flex-shrink-0 ml-4">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        openItems.includes(faq.id) 
+                          ? 'bg-red-600 text-white rotate-180' 
+                          : 'bg-gray-100 text-red-600 group-hover:bg-red-100'
+                      }`}>
+                        {openItems.includes(faq.id) ? (
+                          <ChevronUp className="w-5 h-5" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5" />
+                        )}
+                      </div>
                     </div>
                   </button>
                   
                   {openItems.includes(faq.id) && (
-                    <div className="px-6 pb-4">
-                      <div className="border-t border-gray-100 pt-4">
-                        <p className="text-sm md:text-base text-gray-600 leading-relaxed whitespace-pre-line">
-                          {faq.answer}
-                        </p>
+                    <div className="px-8 pb-6 animate-in slide-in-from-top-2 duration-300">
+                      <div className="border-t border-gray-100 pt-6">
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-2 h-2 bg-red-600 rounded-full mt-3"></div>
+                          <p className="text-base md:text-lg text-gray-700 leading-relaxed whitespace-pre-line">
+                            {faq.answer}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -99,6 +120,18 @@ export function FAQSection() {
             </div>
           </Fade>
         </div>
+
+        <Fade delay={1200} duration={1000}>
+          <div className="text-center mt-12">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-red-50 rounded-full border border-red-200">
+              <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+              <span className="text-red-700 font-medium">Still have questions?</span>
+              <a href="#contact" className="text-red-600 hover:text-red-700 font-semibold underline">
+                Contact us
+              </a>
+            </div>
+          </div>
+        </Fade>
       </div>
     </section>
   )
