@@ -8,9 +8,9 @@ import { StatsSlider } from "@/components/stats-slider"
 export function HeroSection() {
 
   return (
-    <section id="home" className="relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/hero.png)' }}>
+    <section id="home" className="relative bg-cover bg-center bg-no-repeat h-[90vh] flex flex-col" style={{ backgroundImage: 'url(/hero.png)' }}>
       <div className="absolute inset-0 bg-black/40"></div>
-      <div className="relative py-16 md:py-38">
+      <div className="relative flex-1 flex items-center justify-center">
         <div className="container mx-auto px-6 md:px-8 lg:px-12">
           <div className="text-center space-y-4">
             <Fade duration={1500}>
@@ -40,7 +40,9 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      <StatsSlider />
+      <div className="relative z-10">
+        <StatsSlider />
+      </div>
     </section>
   )
 }

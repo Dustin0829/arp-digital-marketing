@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Fade } from "react-awesome-reveal"
 import { Button } from "@/components/ui/button"
-import { Monitor, Megaphone, Image as ImageIcon, Users, Mail, Camera, ShoppingBag } from "lucide-react"
+import { Monitor, Megaphone, Image as ImageIcon, Users, Mail, Camera, ShoppingBag, Headphones, Code, Video } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -119,6 +119,90 @@ const services = [
         }
       ]
     }
+  },
+  {
+    id: "virtual-assistance",
+    name: "Virtual Assistance",
+    icon: Headphones,
+    details: {
+      title: "Virtual Assistance",
+      steps: [
+        {
+          number: 1,
+          title: "Lead Qualification & Capture",
+          description: "We identify and capture high-quality leads through various channels, ensuring your sales pipeline stays full.",
+          image: "/service/lead.png"
+        },
+        {
+          number: 2,
+          title: "Lead Nurturing & Follow-up",
+          description: "We maintain consistent communication with prospects, nurturing relationships until they're ready to convert.",
+          image: "/service/nurture.png"
+        },
+        {
+          number: 3,
+          title: "CRM Management & Reporting",
+          description: "We organize all lead data, track interactions, and provide detailed reports on lead performance and conversion rates.",
+          image: "/service/report.png"
+        }
+      ]
+    }
+  },
+  {
+    id: "web-development",
+    name: "Web Design & Development",
+    icon: Code,
+    details: {
+      title: "Web Design & Development",
+      steps: [
+        {
+          number: 1,
+          title: "Design & Planning",
+          description: "We create stunning, user-friendly designs that reflect your brand and provide an exceptional user experience.",
+          image: "/service/design.png"
+        },
+        {
+          number: 2,
+          title: "Development & Implementation",
+          description: "We build responsive, fast-loading websites using the latest technologies and best practices.",
+          image: "/service/implementation.png"
+        },
+        {
+          number: 3,
+          title: "Testing & Launch",
+          description: "We thoroughly test all functionality, optimize performance, and ensure a smooth launch with ongoing support.",
+          image: "/service/launch.png"
+        }
+      ]
+    }
+  },
+  {
+    id: "tiktok-live",
+    name: "TikTok Live Selling and Management Services",
+    icon: Video,
+    details: {
+      title: "TikTok Live Selling and Management Services",
+      steps: [
+        {
+          number: 1,
+          title: "Live Stream Setup & Strategy",
+          description: "We set up your TikTok Live selling infrastructure and create engaging strategies to maximize sales during live sessions.",
+          image: "/service/contentcreation.png"
+        },
+        {
+          number: 2,
+          title: "Content Creation & Management",
+          description: "We create compelling live content, manage your live streams, and engage with your audience in real-time.",
+          image: "/service/livestream.png"
+        },
+        {
+          number: 3,
+          title: "Sales Optimization & Analytics",
+          description: "We track performance metrics, optimize conversion rates, and provide insights to improve your live selling results.",
+          image: "/service/optimization.png"
+        }
+      ]
+    }
   }
 ]
 
@@ -171,7 +255,7 @@ export function ServicesSection() {
                 {activeService.details.steps.map((step) => (
                   <div key={step.number} className="text-center">
                     <div className="mb-4">
-                      {(activeService.id === "graphic-design" || activeService.id === "content-creation" || activeService.id === "paid-ads" || activeService.id === "social-media") && (step as any).image ? (
+                      {(activeService.id === "graphic-design" || activeService.id === "content-creation" || activeService.id === "paid-ads" || activeService.id === "social-media" || activeService.id === "virtual-assistance" || activeService.id === "web-development" || activeService.id === "tiktok-live") && (step as any).image ? (
                         <div className="w-16 h-16 mx-auto flex items-center justify-center">
                           <Image
                             src={(step as any).image}
